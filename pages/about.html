@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About CBS 2026 | Conference on Biological Sciences – University of Buea</title>
+  <meta name="description" content="Learn about CBS 2026 — its mission, history, organising committee, and conference structure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .mission-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .mission-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      border-radius: var(--radius-lg); overflow: hidden; position: relative;
+    }
+    .mission-img::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 40% 60%, rgba(45,181,110,.4) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 20%, rgba(200,168,75,.3) 0%, transparent 50%);
+    }
+    .mission-img i {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem; color: rgba(255,255,255,.1);
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .value-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 2rem; text-align: center;
+      border: 1px solid var(--gray-light);
+      transition: var(--transition);
+    }
+    .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .value-icon {
+      width: 64px; height: 64px;
+      background: rgba(26,122,74,.08); border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: var(--green-mid);
+      margin: 0 auto 1.2rem;
+    }
+    .value-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; color: var(--green-deep); margin-bottom: .5rem;
+    }
+    .value-card p { font-size: .87rem; color: var(--gray-text); line-height: 1.65; }
+    .committee-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;
+    }
+    .committee-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 1.8rem; text-align: center;
+      border: 1px solid var(--gray-light); transition: var(--transition);
+    }
+    .committee-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .committee-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: var(--font-display); font-size: 1.6rem;
+      font-weight: 700; color: var(--gold);
+      border: 4px solid var(--white); box-shadow: var(--shadow-sm);
+    }
+    .committee-card h4 {
+      font-family: var(--font-display); font-size: 1rem;
+      color: var(--green-deep); margin-bottom: .2rem;
+    }
+    .committee-card .role {
+      font-size: .82rem; color: var(--gray-text);
+    }
+    .committee-card .tag {
+      display: inline-block; margin-top: .6rem;
+      padding: .2rem .75rem;
+      background: rgba(26,122,74,.1); color: var(--green-mid);
+      border-radius: 50px; font-size: .72rem; font-weight: 600;
+    }
+    .org-partner {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: var(--white); border-radius: var(--radius);
+      padding: 1.2rem 1.5rem; border: 1px solid var(--gray-light);
+    }
+    .org-partner-icon {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: rgba(26,122,74,.08); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--green-mid);
+    }
+    .org-partner h4 { font-size: .95rem; font-weight: 600; color: var(--green-deep); }
+    .org-partner p  { font-size: .82rem; color: var(--gray-text); }
+    .partners-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 900px) {
+      .mission-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .values-grid  { grid-template-columns: 1fr 1fr; }
+      .partners-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .values-grid  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="page-loader">
+  <div class="loader-logo">CBS<span>2026</span></div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div id="announcement-bar"></div>
+<header id="navbar" role="banner"></header>
+<div id="mobile-nav" role="dialog" aria-modal="true"></div>
+
+<main>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>About</span>
+    </div>
+    <div class="page-hero-badge"><i class="fa-solid fa-circle-info"></i> About the Conference</div>
+    <h1>About <span>CBS 2026</span></h1>
+    <p>Discover the vision, mission, and people behind the Conference on Biological Sciences 2026 at the University of Buea, Cameroon.</p>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-img reveal">
+        <i class="fa-solid fa-microscope"></i>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-title">Where Biological Science Meets Innovation</h2>
+        <p style="color:var(--gray-text);line-height:1.8;margin-bottom:1rem;">
+          The Conference on Biological Sciences (CBS 2026) is a premier international scientific forum hosted by the University of Buea. It brings together leading scientists, researchers, graduate students, and policymakers to share cutting-edge discoveries and foster collaborative breakthroughs across the life sciences.
+        </p>
+        <p style="color:var(--gray-text);line-height:1.8;margin-bottom:1rem;">
+          From molecular biology and genetics to ecology, conservation, and biotechnology — CBS 2026 covers the full spectrum of biological inquiry. The conference features keynote addresses by internationally distinguished scholars, parallel thematic sessions, poster exhibitions, workshops, and networking opportunities.
+        </p>
+        <p style="color:var(--gray-text);line-height:1.8;">
+          CBS 2026 places a special emphasis on African biodiversity, tropical biology, and the unique biological and health challenges facing the African continent — while maintaining global scientific standards and fostering international collaboration.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCE VALUES -->
+<section class="section-pad bg-cream">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3rem;">
+      <div class="section-label centered">Our Pillars</div>
+      <h2 class="section-title center">Conference Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><i class="fa-solid fa-microscope"></i></div>
+        <h3>Research Excellence</h3>
+        <p>We uphold the highest standards of scientific rigour, welcoming original, peer-reviewed research that advances human knowledge.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Collaboration</h3>
+        <p>We believe in the transformative power of cross-border, interdisciplinary partnerships that multiply the impact of individual discoveries.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon"><i class="fa-solid fa-seedling"></i></div>
+        <h3>African Biodiversity</h3>
+        <p>Central Africa hosts some of the world's richest ecosystems. CBS 2026 spotlights research on and by African scientists.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Capacity Building</h3>
+        <p>Empowering emerging researchers and students is central to our mission, through mentorship, awards, and dedicated sessions.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Global Inclusion</h3>
+        <p>Hybrid attendance ensures researchers from every corner of the world can participate, regardless of resources or location.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h3>Open Science</h3>
+        <p>We promote open-access publication, data sharing, and transparency as cornerstones of responsible science.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANISING COMMITTEE -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:3rem;">
+      <div class="section-label centered">The People Behind CBS 2026</div>
+      <h2 class="section-title center">Organising Committee</h2>
+      <p class="section-subtitle center">
+        CBS 2026 is organised by dedicated faculty and staff of the University of Buea, Faculty of Science.
+      </p>
+    </div>
+    <div class="committee-grid">
+      <div class="committee-card reveal">
+        <div class="committee-avatar">KN</div>
+        <h4>Dr. Kato Namuene</h4>
+        <div class="role">Faculty of Science<br/>University of Buea</div>
+        <span class="tag">Conference Chair</span>
+        <div style="margin-top:.8rem;">
+          <a href="mailto:kato.namuene@ubuea.cm" style="font-size:.82rem;color:var(--green-mid);">
+            <i class="fa-solid fa-envelope" style="margin-right:.3rem;"></i>kato.namuene@ubuea.cm
+          </a>
+        </div>
+      </div>
+      <div class="committee-card reveal reveal-delay-1">
+        <div class="committee-avatar">EF</div>
+        <h4>Prof. Efokam</h4>
+        <div class="role">Faculty of Science<br/>University of Buea</div>
+        <span class="tag">Scientific Committee</span>
+        <div style="margin-top:.8rem;">
+          <a href="mailto:efokam@yahoo.com" style="font-size:.82rem;color:var(--green-mid);">
+            <i class="fa-solid fa-envelope" style="margin-right:.3rem;"></i>efokam@yahoo.com
+          </a>
+        </div>
+      </div>
+      <div class="committee-card reveal reveal-delay-2">
+        <div class="committee-avatar">TBA</div>
+        <h4>To Be Announced</h4>
+        <div class="role">International Scientific Committee</div>
+        <span class="tag">Scientific Review</span>
+      </div>
+      <div class="committee-card reveal reveal-delay-3">
+        <div class="committee-avatar">TBA</div>
+        <h4>To Be Announced</h4>
+        <div class="role">Local Organising Committee</div>
+        <span class="tag">Logistics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOST INSTITUTION -->
+<section class="section-pad bg-cream">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="section-label">Host Institution</div>
+      <h2 class="section-title">University of Buea</h2>
+      <p class="section-subtitle" style="margin-bottom:2rem;">
+        The University of Buea (UBuea), founded in 1993, is one of Cameroon's leading research universities, renowned for excellence in science, technology, and health sciences.
+      </p>
+    </div>
+    <div class="partners-grid reveal">
+      <div class="org-partner">
+        <div class="org-partner-icon"><i class="fa-solid fa-building-columns"></i></div>
+        <div>
+          <h4>University of Buea</h4>
+          <p>Host institution — Faculty of Science, Buea, SW Region, Cameroon</p>
+          <a href="https://www.ubuea.cm" target="_blank" rel="noopener"
+             style="font-size:.82rem;color:var(--green-mid);font-weight:600;">
+            www.ubuea.cm →
+          </a>
+        </div>
+      </div>
+      <div class="org-partner">
+        <div class="org-partner-icon"><i class="fa-solid fa-flask"></i></div>
+        <div>
+          <h4>Faculty of Science</h4>
+          <p>Departments of Biochemistry, Microbiology, Plant Biology, Zoology &amp; Animal Physiology</p>
+        </div>
+      </div>
+      <div class="org-partner">
+        <div class="org-partner-icon"><i class="fa-solid fa-globe-africa"></i></div>
+        <div>
+          <h4>International Partners</h4>
+          <p>Collaborating institutions and research networks — announcements coming soon.</p>
+        </div>
+      </div>
+      <div class="org-partner">
+        <div class="org-partner-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div>
+          <h4>Sponsoring Organisations</h4>
+          <p>Interested in supporting CBS 2026?
+            <a href="mailto:kato.namuene@ubuea.cm?subject=CBS2026 Sponsorship"
+               style="color:var(--green-mid);font-weight:600;">Contact us</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--green-mid),var(--green-deep));padding:5rem 0;text-align:center;">
+  <div class="container reveal">
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);color:#fff;margin-bottom:.6rem;">
+      Join the CBS 2026 Community
+    </h2>
+    <p style="color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:1rem;">
+      Register as a participant or submit your research abstract today.
+    </p>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;">
+      <a href="registration.html" class="btn btn-gold">
+        <i class="fa-solid fa-user-plus"></i> Register Now
+      </a>
+      <a href="abstracts.html" class="btn btn-outline-white">
+        <i class="fa-solid fa-upload"></i> Submit Abstract
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="site-footer" role="contentinfo"></footer>
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+<div id="toast" role="alert" aria-live="polite">
+  <i class="fa-solid fa-check-circle"></i><span id="toast-msg"></span>
+</div>
+
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
