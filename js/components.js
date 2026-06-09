@@ -174,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:efokam@yahoo.com">
-                  <i class="fa-solid fa-envelope"></i>efokam@yahoo.com
+                <a href="mailto:fokam.eric@ubuea.cm">
+                  <i class="fa-solid fa-envelope"></i>fokam.eric@ubuea.cm
                 </a>
               </li>
               <li>
