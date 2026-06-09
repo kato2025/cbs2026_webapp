@@ -285,7 +285,7 @@ footer { background:var(--dark); color:var(--white); padding:5rem 0 2rem; }
 /* RESPONSIVE */
 @media(max-width:1100px){ .footer-grid{grid-template-columns:1fr 1fr} .grid-4{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:900px){
-  .nav-links,.nav-cta-group{display:none} .hamburger{display:flex}
+  .nav-links{display:none} .nav-cta-group{display:none} .hamburger{display:flex !important; visibility:visible !important}
   .grid-2,.grid-3{grid-template-columns:1fr}
   .form-row.cols-2,.form-row.cols-3{grid-template-columns:1fr}
   .timeline::before{left:80px} .tl-item{grid-template-columns:80px 1fr} .tl-dot{left:74px} .tl-date{padding-right:1rem}
