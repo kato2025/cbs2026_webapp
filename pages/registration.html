@@ -12,7 +12,7 @@
 <div id="announcement-bar"><i class="fa-solid fa-circle-info"></i>&nbsp;<strong>Abstract Submission Now Open!</strong> — Deadline: <strong>30 Sep 2026</strong>. <a href="abstracts.html">Submit →</a><button class="close-bar" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
 <nav id="navbar"><div class="container"><div class="nav-inner">
 <a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div><div class="nav-logo-text"><div class="conf-name">CBS 2026</div><div class="conf-sub">University of Buea · Cameroon</div></div></a>
-<ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="themes.html">Themes</a></li><li><a href="dates.html">Key Dates</a></li><li><a href="speakers.html">Speakers</a></li><li><a href="venue.html">Venue</a></li><li><a href="contact.html">Contact</a></li></ul>
+<ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="themes.html">Themes</a></li><li><a href="dates.html">Key Dates</a></li><li><a href="speakers.html">Speakers</a></li><li><a href="venue.html">Venue</a></li><li><a href="tourism.html">Tourism</a></li><li><a href="contact.html">Contact</a></li></ul>
 <div class="nav-cta-group"><a href="registration.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Register</a><a href="abstracts.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-file-alt"></i> Submit Abstract</a><button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
 </div></div></nav>
 <div id="mobile-nav"><div class="mob-overlay"></div><div class="mob-drawer">
@@ -22,6 +22,7 @@
 <a href="dates.html"><i class="fa-solid fa-calendar"></i> Key Dates</a>
 <a href="speakers.html"><i class="fa-solid fa-users"></i> Speakers</a>
 <a href="venue.html"><i class="fa-solid fa-location-dot"></i> Venue</a>
+<a href="tourism.html"><i class="fa-solid fa-camera"></i> Tourism</a>
 <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
 <div class="mob-divider"></div>
 <a href="registration.html" class="mob-btn-primary"><i class="fa-solid fa-user-plus"></i> Register Now</a>
@@ -59,17 +60,16 @@
       <div id="reg-form-body">
         <h2>Registration Form</h2>
         <p class="form-desc">Fields marked <span style="color:#e05252">*</span> are required.</p>
-        <form id="registration-form" method="POST" novalidate>
-          <!-- Web3Forms — replace ACCESS_KEY with your key from web3forms.com -->
-          <input type="hidden" name="access_key" value="ACCESS_KEY"/>
-          <input type="hidden" name="subject" value="CBS 2026 — New Registration"/>
-          <input type="hidden" name="from_name" value="CBS 2026 Website"/>
-          <input type="hidden" name="replyto" value=""/>
-          <input type="hidden" name="cc" value="efokam@yahoo.com"/>
-          <input type="hidden" name="redirect" value="false"/>
+        <form id="registration-form" action="https://formsubmit.co/kato.namuene@ubuea.cm" method="POST" novalidate>
+          <!-- FORMSUBMIT.CO — works instantly, no account needed -->
+          <!-- First submission will send a one-time activation email to kato.namuene@ubuea.cm — just click the confirmation link -->
+          <input type="hidden" name="_subject" value="CBS 2026 — New Registration"/>
+          <input type="hidden" name="_cc" value="efokam@yahoo.com"/>
+          <input type="hidden" name="_captcha" value="false"/>
+          <input type="hidden" name="_template" value="table"/>
+          <input type="hidden" name="_next" value="registration-success.html"/>
           <input type="checkbox" name="botcheck" style="display:none"/>
-          <!-- Formspree hidden fields -->
-          
+
           
           
           <div class="form-section-label">Personal Details</div>
@@ -114,40 +114,32 @@
 </div>
 </div></section>
 <script>
-document.getElementById('registration-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  if (!validateForm(this)) { showToast('Please fill in all required fields.', 'error'); return; }
-  if (!document.getElementById('r-consent').checked) { showToast('Please accept the terms & conditions.', 'error'); return; }
-
-  const btn = document.getElementById('r-submit');
+document.getElementById('registration-form').addEventListener('submit', function(e) {
+  // Let the browser validate required fields first
+  var required = this.querySelectorAll('[required]');
+  var allFilled = true;
+  required.forEach(function(field) {
+    if (!field.value.trim()) {
+      field.classList.add('error');
+      if (field.closest('.form-group')) field.closest('.form-group').classList.add('has-error');
+      allFilled = false;
+    }
+  });
+  if (!allFilled) {
+    e.preventDefault();
+    showToast('Please fill in all required fields.', 'error');
+    return;
+  }
+  if (!document.getElementById('r-consent').checked) {
+    e.preventDefault();
+    showToast('Please accept the terms & conditions.', 'error');
+    return;
+  }
+  // If all valid — allow the native form POST to Formsubmit.co to proceed
+  var btn = document.getElementById('r-submit');
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
   btn.disabled = true;
-
-  const formData = new FormData(this);
-
-  try {
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      document.getElementById('reg-form-body').style.display = 'none';
-      document.getElementById('reg-success').classList.add('show');
-      showToast('Registration submitted successfully!');
-    } else {
-      const data = await response.json();
-      const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.';
-      showToast(msg, 'error');
-      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Registration';
-      btn.disabled = false;
-    }
-  } catch (err) {
-    showToast('Network error. Please check your connection and try again.', 'error');
-    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Registration';
-    btn.disabled = false;
-  }
+  // Form will POST naturally — Formsubmit.co handles delivery to both emails
 });
 </script>
 <footer><div class="container">

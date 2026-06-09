@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tourism & Attractions | CBS 2026 – University of Buea</title>
+  <meta name="description" content="Discover the extraordinary natural and cultural attractions awaiting CBS 2026 delegates — wildlife, volcanoes, beaches, and the iconic University of Buea campus."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       TOURISM PAGE — MAGAZINE / EDITORIAL STYLE
+    ═══════════════════════════════════════════════════════ */
+
+    /* ── HERO: Full-bleed mosaic ─────────────────────────── */
+    .tourism-hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+    .hero-mosaic {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .hero-mosaic .tile {
+      overflow: hidden; position: relative;
+    }
+    .hero-mosaic .tile img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 8s ease;
+    }
+    .hero-mosaic .tile:hover img { transform: scale(1.06); }
+    .hero-mosaic .tile-main {
+      grid-row: 1 / 3;
+    }
+    /* Dark gradient overlay over entire mosaic */
+    .tourism-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(5,20,10,.92) 0%, rgba(5,20,10,.5) 40%, rgba(5,20,10,.15) 100%),
+        linear-gradient(to right, rgba(5,20,10,.3) 0%, transparent 60%);
+      z-index: 1;
+    }
+    .hero-text {
+      position: relative; z-index: 2;
+      padding: 4rem 0 5rem;
+      width: 100%;
+    }
+    .hero-text .eyebrow {
+      font-family: var(--font-mono);
+      font-size: .72rem; letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .hero-text .eyebrow::before {
+      content: ''; width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.0; margin-bottom: 1.2rem;
+      max-width: 700px;
+    }
+    .hero-text h1 em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-text p {
+      font-size: 1.1rem; color: rgba(255,255,255,.75);
+      max-width: 560px; line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .h-stat { text-align: left; }
+    .h-stat .hn {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 900;
+      color: var(--gold); line-height: 1; display: block;
+    }
+    .h-stat .hl {
+      font-size: .75rem; color: rgba(255,255,255,.55);
+      text-transform: uppercase; letter-spacing: .1em;
+    }
+    /* Scroll cue */
+    .hero-scroll {
+      position: absolute; bottom: 2rem; right: 3rem; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.35); font-size: .68rem;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollLine 2s ease infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── INTRO STRIP ─────────────────────────────────────── */
+    .intro-strip {
+      background: var(--green-deep);
+      padding: 3rem 0;
+    }
+    .intro-strip-inner {
+      display: flex; align-items: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .intro-strip p {
+      flex: 1; min-width: 280px;
+      font-size: 1.05rem; color: rgba(255,255,255,.75);
+      line-height: 1.8;
+    }
+    .intro-strip p strong { color: var(--gold-light); }
+    .intro-badges {
+      display: flex; gap: .8rem; flex-wrap: wrap;
+    }
+    .i-badge {
+      display: flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50px;
+      padding: .55rem 1.1rem;
+      font-size: .82rem; color: rgba(255,255,255,.8);
+      white-space: nowrap;
+    }
+    .i-badge i { color: var(--gold); }
+
+    /* ── SECTION: DESTINATION ────────────────────────────── */
+    .destination-section {
+      padding: 7rem 0;
+    }
+    .destination-section.dark {
+      background: var(--dark);
+    }
+    .destination-section.light {
+      background: var(--white);
+    }
+    .destination-section.cream {
+      background: var(--cream);
+    }
+
+    /* ── SECTION HEADER ──────────────────────────────────── */
+    .dest-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 3.5rem;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .dest-header-left .dest-number {
+      font-family: var(--font-mono);
+      font-size: 4rem; font-weight: 700;
+      color: rgba(200,168,75,.15);
+      line-height: 1; margin-bottom: -.5rem;
+      user-select: none;
+    }
+    .dest-header-left .dest-number.white { color: rgba(255,255,255,.08); }
+    .dest-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+    .dest-header h2.white { color: var(--white); }
+    .dest-header .dest-sub {
+      font-size: .92rem; color: var(--gray-text); max-width: 500px;
+    }
+    .dest-header .dest-sub.white { color: rgba(255,255,255,.55); }
+    .dest-header-right {
+      font-family: var(--font-mono);
+      font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: .6rem;
+      white-space: nowrap;
+    }
+    .dest-header-right::after {
+      content: ''; width: 48px; height: 1px; background: var(--gold);
+    }
+
+    /* ── WILDLIFE: LARGE FEATURE GRID ───────────────────── */
+    .wildlife-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+    }
+    .wl-feature {
+      grid-row: 1 / 3;
+      position: relative; border-radius: var(--radius-lg);
+      overflow: hidden; aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+    .wl-feature img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .wl-feature:hover img { transform: scale(1.05); }
+    .wl-card {
+      position: relative; border-radius: var(--radius-lg);
+      overflow: hidden; aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .wl-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .wl-card:hover img { transform: scale(1.07); }
+    /* Photo caption overlay */
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(5,20,10,.88) 0%, transparent 100%);
+      padding: 2rem 1.5rem 1.2rem;
+      transform: translateY(8px);
+      transition: transform .3s ease;
+    }
+    .wl-feature:hover .photo-caption,
+    .wl-card:hover .photo-caption { transform: translateY(0); }
+    .photo-caption .cap-tag {
+      font-family: var(--font-mono);
+      font-size: .65rem; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: .35rem;
+    }
+    .photo-caption h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem; color: var(--white);
+      font-weight: 700; line-height: 1.2;
+    }
+    .photo-caption p {
+      font-size: .8rem; color: rgba(255,255,255,.65);
+      margin-top: .3rem; line-height: 1.5;
+    }
+    .conservation-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(220,80,50,.85);
+      color: var(--white);
+      padding: .3rem .75rem;
+      border-radius: 50px;
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+    .conservation-badge.blue {
+      background: rgba(30,100,200,.85);
+    }
+
+    /* Wildlife info cards below grid */
+    .wildlife-info-strip {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1.2rem; margin-top: 1.5rem;
+    }
+    .wi-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+    }
+    .wi-card .wi-icon {
+      font-size: 1.5rem; margin-bottom: .6rem;
+    }
+    .wi-card h4 {
+      font-size: .9rem; font-weight: 700;
+      color: var(--white); margin-bottom: .3rem;
+    }
+    .wi-card p {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      line-height: 1.55;
+    }
+
+    /* ── LANDSCAPE: HORIZONTAL SCROLL STRIP ─────────────── */
+    .landscape-intro {
+      display: grid; grid-template-columns: 1fr 1.8fr;
+      gap: 4rem; align-items: center;
+      margin-bottom: 3rem;
+    }
+    .landscape-scroll-track {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .ls-card {
+      position: relative; border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .ls-card img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .ls-card:hover img { transform: scale(1.06); }
+    .ls-card .photo-caption h3 { font-size: 1rem; }
+
+    /* ── UNIVERSITY CAMPUS: MASONRY-STYLE ───────────────── */
+    .campus-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 1.2rem;
+    }
+    .campus-item {
+      position: relative; border-radius: var(--radius);
+      overflow: hidden; cursor: pointer;
+    }
+    .campus-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .5s ease;
+    }
+    .campus-item:hover img { transform: scale(1.05); }
+    .campus-item.tall { aspect-ratio: 3/4; }
+    .campus-item.wide { grid-column: span 2; aspect-ratio: 16/7; }
+    .campus-item.square { aspect-ratio: 1; }
+    .campus-item.short { aspect-ratio: 16/9; }
+    .campus-item .photo-caption h3 { font-size: .95rem; }
+
+    /* ── LIGHTBOX ────────────────────────────────────────── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(5,15,8,.95);
+      display: none; align-items: center; justify-content: center;
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+    }
+    #lightbox.open { display: flex; }
+    .lb-inner {
+      position: relative; max-width: 1100px; width: 100%;
+    }
+    #lb-img {
+      width: 100%; max-height: 80vh;
+      object-fit: contain; border-radius: var(--radius);
+      display: block;
+    }
+    .lb-caption {
+      margin-top: 1.2rem; text-align: center;
+    }
+    .lb-caption h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; color: var(--white);
+      margin-bottom: .3rem;
+    }
+    .lb-caption p { color: rgba(255,255,255,.55); font-size: .88rem; }
+    .lb-close {
+      position: absolute; top: -1rem; right: -1rem;
+      width: 44px; height: 44px;
+      background: var(--gold); color: var(--dark);
+      border: none; border-radius: 50%;
+      font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .lb-close:hover { background: var(--gold-light); transform: scale(1.1); }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%; color: var(--white);
+      font-size: .9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .lb-nav:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .lb-prev { left: -3.5rem; }
+    .lb-next { right: -3.5rem; }
+
+    /* ── CTA BANNER ──────────────────────────────────────── */
+    .tourism-cta {
+      background: linear-gradient(135deg, var(--green-deep), #051508);
+      padding: 6rem 0;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .tourism-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(45,181,110,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 70% at 80% 30%, rgba(200,168,75,.1) 0%, transparent 70%);
+    }
+    .tourism-cta-inner { position: relative; z-index: 1; }
+    .tourism-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      color: var(--white); margin-bottom: .8rem;
+    }
+    .tourism-cta h2 span { color: var(--gold); font-style: italic; }
+    .tourism-cta p {
+      color: rgba(255,255,255,.65); font-size: 1.05rem;
+      max-width: 560px; margin: 0 auto 2rem; line-height: 1.75;
+    }
+    .tourism-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .wildlife-grid { grid-template-columns: 1fr 1fr; }
+      .wl-feature { grid-row: auto; aspect-ratio: 16/9; }
+      .wildlife-info-strip { grid-template-columns: repeat(2,1fr); }
+      .landscape-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .campus-masonry { grid-template-columns: 1fr 1fr; }
+      .campus-item.wide { grid-column: span 2; }
+    }
+    @media (max-width: 700px) {
+      .hero-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3,1fr); }
+      .hero-mosaic .tile-main { grid-row: 1/3; }
+      .wildlife-grid { grid-template-columns: 1fr; }
+      .wl-feature { aspect-ratio: 16/9; }
+      .landscape-scroll-track { grid-template-columns: 1fr; }
+      .ls-card img { aspect-ratio: 16/9; }
+      .wildlife-info-strip { grid-template-columns: 1fr 1fr; }
+      .campus-masonry { grid-template-columns: 1fr; }
+      .campus-item.wide { grid-column: span 1; aspect-ratio: 4/3; }
+      .campus-item.tall, .campus-item.square { aspect-ratio: 4/3; }
+      .lb-prev { left: -.5rem; }
+      .lb-next { right: -.5rem; }
+      .intro-strip-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="page-loader"><div class="loader-logo">CBS<span>2026</span></div><div class="loader-bar"><div class="loader-fill"></div></div></div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div id="announcement-bar">
+  <i class="fa-solid fa-circle-info"></i>&nbsp;
+  <strong>Abstract Submission Now Open!</strong> — Deadline: <strong>30 Sep 2026</strong>.
+  <a href="abstracts.html">Submit →</a>
+  <button class="close-bar" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+        <div class="nav-logo-text"><div class="conf-name">CBS 2026</div><div class="conf-sub">University of Buea · Cameroon</div></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="dates.html">Key Dates</a></li>
+        <li><a href="speakers.html">Speakers</a></li>
+        <li><a href="venue.html">Venue</a></li>
+        <li><a href="tourism.html" class="active">Tourism</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta-group">
+        <a href="registration.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Register</a>
+        <a href="abstracts.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-file-alt"></i> Submit Abstract</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav"><div class="mob-overlay"></div>
+  <div class="mob-drawer">
+    <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="themes.html"><i class="fa-solid fa-flask"></i> Themes</a>
+    <a href="dates.html"><i class="fa-solid fa-calendar"></i> Key Dates</a>
+    <a href="speakers.html"><i class="fa-solid fa-users"></i> Speakers</a>
+    <a href="venue.html"><i class="fa-solid fa-location-dot"></i> Venue</a>
+    <a href="tourism.html" class="active"><i class="fa-solid fa-camera"></i> Tourism</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <div class="mob-divider"></div>
+    <a href="registration.html" class="mob-btn-primary"><i class="fa-solid fa-user-plus"></i> Register Now</a>
+    <a href="abstracts.html" class="mob-btn-gold"><i class="fa-solid fa-file-alt"></i> Submit Abstract</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO — Full-bleed photo mosaic
+═══════════════════════════════════════════════════════ -->
+<section class="tourism-hero">
+  <div class="hero-mosaic">
+    <div class="tile tile-main" data-lb-src="../images/chimp1.jpg" data-lb-title="Chimpanzee at Limbe Wildlife Centre" data-lb-desc="Pan troglodytes — our closest living relative, rescued and rehabilitated at LWC">
+      <img src="../images/chimp1.jpg" alt="Chimpanzee at Limbe Wildlife Centre"/>
+    </div>
+    <div class="tile" data-lb-src="../images/gorilla.jpg" data-lb-title="Western Lowland Gorilla" data-lb-desc="Gorilla gorilla gorilla — critically endangered, protected at Limbe Wildlife Centre">
+      <img src="../images/gorilla.jpg" alt="Western Lowland Gorilla"/>
+    </div>
+    <div class="tile" data-lb-src="../images/limbe_beach.png" data-lb-title="Limbe Black Sand Beach" data-lb-desc="Unique volcanic black sand beaches, framed by the Gulf of Guinea and Mount Cameroon">
+      <img src="../images/limbe_beach.png" alt="Limbe Beach"/>
+    </div>
+    <div class="tile" data-lb-src="../images/drill2.jpg" data-lb-title="Drill Monkey" data-lb-desc="Mandrillus leucophaeus — one of Africa's most endangered primates, endemic to the Cross River region">
+      <img src="../images/drill2.jpg" alt="Drill Monkey"/>
+    </div>
+    <div class="tile" data-lb-src="../images/ywin_lakes.png" data-lb-title="Mount Etinde — Twin Lakes" data-lb-desc="Aerial view of the crater lakes on Mount Etinde (Little Mount Cameroon) — a UNESCO Biosphere Reserve site">
+      <img src="../images/ywin_lakes.jpg" alt="Mount Etinde Twin Lakes"/>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-text">
+      <div class="eyebrow">CBS 2026 · Buea & South West Region</div>
+      <h1>Africa in its<br/><em>Purest Form</em></h1>
+      <p>Beyond the science, CBS 2026 places you at the doorstep of some of the most extraordinary wildlife, landscapes, and cultural heritage on the African continent.</p>
+      <div class="hero-stats">
+        <div class="h-stat"><span class="hn">4,095m</span><span class="hl">Mount Cameroon</span></div>
+        <div class="h-stat"><span class="hn">500+</span><span class="hl">Bird Species</span></div>
+        <div class="h-stat"><span class="hn">~70km</span><span class="hl">From Douala</span></div>
+        <div class="h-stat"><span class="hn">3</span><span class="hl">Protected Areas Nearby</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Explore</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ── INTRO STRIP ──────────────────────────────────────── -->
+<div class="intro-strip">
+  <div class="container">
+    <div class="intro-strip-inner">
+      <p>The <strong>South West Region of Cameroon</strong> is one of Africa's most biodiverse and scenically dramatic corners — home to an active stratovolcano, rare great apes, volcanic beaches, crater lakes, and a vibrant coastal city. CBS 2026 delegates will have the unique opportunity to experience all of this as part of their visit to the <strong>University of Buea</strong>.</p>
+      <div class="intro-badges">
+        <div class="i-badge"><i class="fa-solid fa-paw"></i> Great Apes</div>
+        <div class="i-badge"><i class="fa-solid fa-mountain"></i> Active Volcano</div>
+        <div class="i-badge"><i class="fa-solid fa-water"></i> Volcanic Beaches</div>
+        <div class="i-badge"><i class="fa-solid fa-binoculars"></i> Birdwatching</div>
+        <div class="i-badge"><i class="fa-solid fa-landmark"></i> Cultural Sites</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     01 — LIMBE WILDLIFE CENTRE
+═══════════════════════════════════════════════════════ -->
+<section class="destination-section dark">
+  <div class="container">
+    <div class="dest-header">
+      <div class="dest-header-left">
+        <div class="dest-number white">01</div>
+        <h2 class="white">Limbe Wildlife Centre</h2>
+        <p class="dest-sub white">Africa's premier sanctuary for rescued and rehabilitated great apes and endangered primates — just 30 minutes from Buea.</p>
+      </div>
+      <div class="dest-header-right" style="color:var(--gold)">Wildlife Sanctuary</div>
+    </div>
+
+    <div class="wildlife-grid">
+      <!-- Feature -->
+      <div class="wl-feature reveal" data-lb-src="../images/chimp1.jpg" data-lb-title="Chimpanzee — Pan troglodytes" data-lb-desc="Common chimpanzee photographed at Limbe Wildlife Centre. This species shares 98.7% of its DNA with humans and is classified as Endangered on the IUCN Red List.">
+        <img src="../images/chimp1.jpg" alt="Chimpanzee at Limbe Wildlife Centre"/>
+        <span class="conservation-badge">Endangered</span>
+        <div class="photo-caption">
+          <span class="cap-tag">Limbe Wildlife Centre</span>
+          <h3>Common Chimpanzee</h3>
+          <p><em>Pan troglodytes</em> — our closest living relative, sharing 98.7% of human DNA</p>
+        </div>
+      </div>
+      <!-- Card 1 -->
+      <div class="wl-card reveal delay-1" data-lb-src="../images/chimp_group.jpg" data-lb-title="Chimpanzee Social Group" data-lb-desc="A group of rehabilitated chimpanzees at Limbe Wildlife Centre. LWC rescues orphaned and confiscated apes from the illegal bushmeat and pet trade.">
+        <img src="../images/chimp_group.jpg" alt="Chimpanzee group at Limbe"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Social Behaviour</span>
+          <h3>Chimpanzee Social Group</h3>
+          <p>Rescued from the illegal wildlife trade — now thriving at LWC</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="wl-card reveal delay-2" data-lb-src="../images/chimp2.jpg" data-lb-title="Chimpanzee — Limbe Wildlife Centre" data-lb-desc="An adult chimpanzee at rest in the grassland enclosure of Limbe Wildlife Centre, Limbe, Cameroon.">
+        <img src="../images/chimp2.jpg" alt="Chimpanzee resting"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Sanctuary Life</span>
+          <h3>At Rest in the Grassland</h3>
+          <p>LWC provides lifetime sanctuary for animals that cannot be returned to the wild</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drill & Gorilla row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem">
+      <div class="wl-card reveal" data-lb-src="../images/drill.jpg" data-lb-title="Drill — Mandrillus leucophaeus" data-lb-desc="The Drill is one of Africa's most endangered primates, endemic to the forests of south-western Cameroon, Cross River State (Nigeria), and Bioko Island (Equatorial Guinea).">
+        <img src="../images/drill.jpg" alt="Drill Monkey" style="aspect-ratio:16/9;width:100%;object-fit:cover"/>
+        <span class="conservation-badge">Endangered</span>
+        <div class="photo-caption">
+          <span class="cap-tag">Limbe Wildlife Centre</span>
+          <h3>Drill — <em>Mandrillus leucophaeus</em></h3>
+          <p>One of Africa's most endangered primates, endemic to the Cross River–Cameroon forests</p>
+        </div>
+      </div>
+      <div class="wl-card reveal delay-1" data-lb-src="../images/gorilla.jpg" data-lb-title="Western Lowland Gorilla" data-lb-desc="Gorilla gorilla gorilla — critically endangered, with fewer than 100,000 individuals remaining. Limbe Wildlife Centre houses rescued gorillas and participates in regional conservation programmes.">
+        <img src="../images/gorilla.jpg" alt="Gorilla at Limbe" style="aspect-ratio:16/9;width:100%;object-fit:cover"/>
+        <span class="conservation-badge">Critically Endangered</span>
+        <div class="photo-caption">
+          <span class="cap-tag">Great Apes</span>
+          <h3>Western Lowland Gorilla</h3>
+          <p><em>Gorilla gorilla gorilla</em> — fewer than 100,000 remain in the wild</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="wildlife-info-strip">
+      <div class="wi-card reveal">
+        <div class="wi-icon">🦍</div>
+        <h4>Great Apes</h4>
+        <p>Chimpanzees, gorillas, and drills — all critically threatened and all found at LWC.</p>
+      </div>
+      <div class="wi-card reveal delay-1">
+        <div class="wi-icon">📍</div>
+        <h4>30 min from Buea</h4>
+        <p>Located in Limbe town, a short drive along the scenic Buea–Limbe highway.</p>
+      </div>
+      <div class="wi-card reveal delay-2">
+        <div class="wi-icon">🌿</div>
+        <h4>Conservation Mission</h4>
+        <p>Founded in 1993, LWC has rehabilitated hundreds of animals rescued from illegal trade.</p>
+      </div>
+      <div class="wi-card reveal delay-3">
+        <div class="wi-icon">🔬</div>
+        <h4>Research Partner</h4>
+        <p>Active research site for primatology, ethology, and wildlife veterinary science.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     02 — LANDSCAPES & NATURAL SCENERY
+═══════════════════════════════════════════════════════ -->
+<section class="destination-section cream">
+  <div class="container">
+    <div class="dest-header">
+      <div class="dest-header-left">
+        <div class="dest-number">02</div>
+        <h2>Landscapes &amp; Natural Wonders</h2>
+        <p class="dest-sub">From volcanic craters and highland lakes to misty Atlantic beaches — the South West Region is a geography lesson you will never forget.</p>
+      </div>
+      <div class="dest-header-right">Nature &amp; Scenery</div>
+    </div>
+
+    <div class="landscape-intro">
+      <div class="reveal">
+        <div class="section-label">The Setting</div>
+        <h3 style="font-family:var(--font-display);font-size:1.6rem;color:var(--green-deep);margin-bottom:1rem;line-height:1.2">Where Volcano Meets Ocean</h3>
+        <p style="font-size:.95rem;color:var(--gray-text);line-height:1.8;margin-bottom:1rem">Mount Cameroon (4,095 m) — Africa's highest peak west of the Rift Valley and one of its most active volcanoes — towers directly above Buea and Limbe. Its slopes are covered in montane forests of extraordinary biodiversity.</p>
+        <p style="font-size:.95rem;color:var(--gray-text);line-height:1.8;margin-bottom:1.2rem">The mountain's flanks descend all the way to the Atlantic coast, where Limbe's unique black volcanic sand beaches meet the Gulf of Guinea. Above the cloud line, crater lakes and highland meadows offer otherworldly scenery.</p>
+        <div style="display:flex;flex-direction:column;gap:.6rem">
+          <div style="display:flex;gap:.7rem;align-items:center;font-size:.88rem;color:var(--gray-text)"><i class="fa-solid fa-circle-check" style="color:var(--green-mid)"></i> Mount Cameroon — UNESCO Biosphere Reserve</div>
+          <div style="display:flex;gap:.7rem;align-items:center;font-size:.88rem;color:var(--gray-text)"><i class="fa-solid fa-circle-check" style="color:var(--green-mid)"></i> Mount Etinde — Twin Crater Lakes (Ywin Lakes)</div>
+          <div style="display:flex;gap:.7rem;align-items:center;font-size:.88rem;color:var(--gray-text)"><i class="fa-solid fa-circle-check" style="color:var(--green-mid)"></i> Limbe Black Sand Beach — volcanic coastline</div>
+          <div style="display:flex;gap:.7rem;align-items:center;font-size:.88rem;color:var(--gray-text)"><i class="fa-solid fa-circle-check" style="color:var(--green-mid)"></i> Bongo Square viewpoint — panoramic mountain vista</div>
+        </div>
+      </div>
+      <div class="reveal delay-2">
+        <div class="wl-card" data-lb-src="../images/ywin_lakes.jpg" data-lb-title="Mount Etinde — Twin Crater Lakes (Ywin Lakes)" data-lb-desc="Aerial photograph of the twin volcanic crater lakes on Mount Etinde (Little Mount Cameroon, 1,713m), a sacred mountain in Bakweri tradition and part of the Mount Cameroon UNESCO Biosphere Reserve.">
+          <img src="../images/ywin_lakes.jpg" alt="Mount Etinde Twin Lakes" style="width:100%;aspect-ratio:4/3;object-fit:cover"/>
+          <div class="photo-caption">
+            <span class="cap-tag">Mount Etinde · UNESCO Biosphere Reserve</span>
+            <h3>Twin Crater Lakes — Ywin Lakes</h3>
+            <p>Aerial view of the volcanic crater lakes on Mount Etinde (1,713m)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="landscape-scroll-track">
+      <div class="ls-card reveal" data-lb-src="../images/limbe_beach.png" data-lb-title="Limbe Black Sand Beach" data-lb-desc="Limbe's iconic black volcanic sand beaches are unlike anything else on the African coast. The dark basaltic sand contrasts dramatically with the green hills of Mount Cameroon rising behind the town and the deep blue waters of the Gulf of Guinea.">
+        <img src="../images/limbe_beach.png" alt="Limbe Black Sand Beach"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Limbe · Atlantic Coast</span>
+          <h3>Black Sand Beach</h3>
+          <p>Volcanic basaltic sand — unique on the African Atlantic coast</p>
+        </div>
+      </div>
+      <div class="ls-card reveal delay-1" data-lb-src="../images/bongo_square.png" data-lb-title="View of Mount Cameroon from Bongo Square, Buea" data-lb-desc="The dramatic silhouette of Mount Cameroon (4,095m), Africa's highest active volcano, viewed from Bongo Square in Buea town. The mountain dominates the skyline and is visible from the Atlantic coast on clear days.">
+        <img src="../images/bongo_square.png" alt="Mount Cameroon view from Bongo Square"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Buea Town · Bongo Square</span>
+          <h3>Mount Cameroon — 4,095m</h3>
+          <p>Africa's highest active volcano, towering above Buea and Limbe</p>
+        </div>
+      </div>
+      <div class="ls-card reveal delay-2" data-lb-src="../images/monument.png" data-lb-title="Cameroon 50 Years Independence Monument, Buea" data-lb-desc="The Independence Monument in Buea, erected to commemorate 50 years of Cameroonian independence. Mount Cameroon rises majestically behind the monument, a powerful symbol of the nation's natural and cultural heritage.">
+        <img src="../images/monument.png" alt="Cameroon 50 Years Monument"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Buea · Cultural Heritage</span>
+          <h3>Independence Monument</h3>
+          <p>A symbol of Cameroonian nationhood, with Mount Cameroon as backdrop</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     03 — UNIVERSITY OF BUEA CAMPUS
+═══════════════════════════════════════════════════════ -->
+<section class="destination-section light">
+  <div class="container">
+    <div class="dest-header">
+      <div class="dest-header-left">
+        <div class="dest-number">03</div>
+        <h2>University of Buea — The Host Campus</h2>
+        <p class="dest-sub">Sprawling across 400 hectares of lush terrain at the foot of Mount Cameroon, the University of Buea campus is itself a destination — green, tranquil, and architecturally distinctive.</p>
+      </div>
+      <div class="dest-header-right">Conference Venue</div>
+    </div>
+
+    <div class="campus-masonry">
+      <!-- Row 1 -->
+      <div class="campus-item wide reveal" data-lb-src="../images/ub_entrance.png" data-lb-title="University of Buea — Main Entrance" data-lb-desc="The iconic main gate of the University of Buea in Molyko, bearing the bilingual inscription 'University of Buea — Université de Buea'. The palm-lined avenue leads into the 400-hectare campus.">
+        <img src="../images/ub_entrance.png" alt="University of Buea Main Entrance"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Main Entrance · Molyko</span>
+          <h3>University of Buea — Main Gate</h3>
+          <p>The iconic bilingual entrance to Cameroon's first Anglophone state university</p>
+        </div>
+      </div>
+      <div class="campus-item tall reveal delay-1" data-lb-src="../images/ub_elephant.png" data-lb-title="Elephant Statue — University of Buea Roundabout" data-lb-desc="The elephant statue at the central roundabout of the University of Buea campus — a landmark welcoming staff, students, and visitors to the heart of the institution.">
+        <img src="../images/ub_elephant.png" alt="UB Elephant Statue"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Campus Landmark</span>
+          <h3>The Elephant Roundabout</h3>
+          <p>Iconic campus landmark at the heart of the University of Buea</p>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="campus-item square reveal" data-lb-src="../images/ub_road.png" data-lb-title="University of Buea — Campus Road Network" data-lb-desc="Aerial view of the University of Buea campus road network, showing the green, park-like character of the campus. The institution covers over 400 hectares in Molyko, Buea, SW Region.">
+        <img src="../images/ub_road.png" alt="UB Campus Aerial View"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Aerial View</span>
+          <h3>The Green Campus</h3>
+          <p>400+ hectares of park-like grounds at the foot of Mount Cameroon</p>
+        </div>
+      </div>
+      <div class="campus-item square reveal delay-1" data-lb-src="../images/ub_admin.png" data-lb-title="University of Buea — Central Administration Building" data-lb-desc="The Central Administration Building of the University of Buea, with Mount Cameroon rising in the background. This building houses the Vice Chancellor's office and is one of the most recognisable structures on campus.">
+        <img src="../images/ub_admin.png" alt="UB Central Administration"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Central Administration</span>
+          <h3>Vice Chancellor's Building</h3>
+          <p>The administrative heart of UB, framed by Mount Cameroon</p>
+        </div>
+      </div>
+      <div class="campus-item square reveal delay-2" data-lb-src="../images/ub_roundpoint.png" data-lb-title="University of Buea — Internal Roundpoint" data-lb-desc="Aerial view of one of the University of Buea's campus roundpoints, showing the well-maintained road network and lush green surroundings that characterise the institution.">
+        <img src="../images/ub_roundpoint.png" alt="UB Internal Roundpoint"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Campus Infrastructure</span>
+          <h3>Campus Roundpoint</h3>
+          <p>Well-maintained roads and grounds across the sprawling campus</p>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="campus-item short reveal" data-lb-src="../images/ub_fhs.png" data-lb-title="University of Buea — Faculty of Health Sciences (FHS)" data-lb-desc="The Faculty of Health Sciences building at the University of Buea, with Mount Cameroon providing a dramatic backdrop. The FHS trains medical and health science professionals for Cameroon and the region.">
+        <img src="../images/ub_fhs.png" alt="UB Faculty of Health Sciences"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Faculty of Health Sciences</span>
+          <h3>FHS Building</h3>
+          <p>Training the next generation of health professionals — Mount Cameroon behind</p>
+        </div>
+      </div>
+      <div class="campus-item short reveal delay-1" data-lb-src="../images/ub_library.png" data-lb-title="University of Buea — Main Library" data-lb-desc="The main library building of the University of Buea, which houses one of the most comprehensive academic collections in Central Africa, with over 100,000 volumes and growing digital resources.">
+        <img src="../images/ub_library.png" alt="UB Library"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Academic Resources</span>
+          <h3>University Library</h3>
+          <p>One of Central Africa's most comprehensive academic libraries</p>
+        </div>
+      </div>
+      <div class="campus-item short reveal delay-2" data-lb-src="../images/ub_httc.png" data-lb-title="University of Buea — HTTC Building" data-lb-desc="The Higher Teacher Training College (HTTC) building on the University of Buea campus, an institution that trains secondary school teachers for Cameroon's Anglophone regions.">
+        <img src="../images/ub_httc.png" alt="UB HTTC Building"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Higher Teacher Training College</span>
+          <h3>HTTC Building</h3>
+          <p>Training educators for Cameroon's Anglophone secondary schools</p>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="campus-item wide reveal" data-lb-src="../images/ub_asti.png" data-lb-title="University of Buea — ASTI Building" data-lb-desc="The Advanced School of Translators and Interpreters (ASTI) at the University of Buea, with Mount Cameroon filling the horizon behind the building. ASTI is one of the most specialised language training institutions in Central Africa.">
+        <img src="../images/ub_asti.png" alt="UB ASTI Building"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Advanced School of Translators &amp; Interpreters</span>
+          <h3>ASTI — With Mount Cameroon</h3>
+          <p>Language and translation excellence, set against the iconic volcanic landscape</p>
+        </div>
+      </div>
+      <div class="campus-item short reveal delay-2" data-lb-src="../images/ub_gate2.png" data-lb-title="University of Buea — Second Gate" data-lb-desc="The second entrance gate of the University of Buea campus in Molyko, showing the tree-lined avenue and the open, parkland character of the institution's grounds.">
+        <img src="../images/ub_gate2.png" alt="UB Second Gate"/>
+        <div class="photo-caption">
+          <span class="cap-tag">Secondary Entrance</span>
+          <h3>Second Campus Gate</h3>
+          <p>Tree-lined approach to one of Cameroon's most beautiful campuses</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════════════ -->
+<div class="tourism-cta">
+  <div class="container">
+    <div class="tourism-cta-inner reveal">
+      <div class="section-label centered" style="justify-content:center;margin-bottom:1.2rem"><span></span>Join CBS 2026</div>
+      <h2>Come for the Science.<br/>Stay for <span>the Wonder.</span></h2>
+      <p>Register for CBS 2026 and experience world-class biological sciences research in one of Africa's most extraordinary natural settings. Conference excursions to Limbe Wildlife Centre, Mount Cameroon, and the Atlantic coast will be organised for all registered delegates.</p>
+      <div class="tourism-cta-btns">
+        <a href="registration.html" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Register Now</a>
+        <a href="venue.html" class="btn btn-gold"><i class="fa-solid fa-location-dot"></i> Venue &amp; Travel Info</a>
+        <a href="contact.html" class="btn btn-outline-white"><i class="fa-solid fa-envelope"></i> Enquire About Excursions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:.7rem">
+        <div class="nav-logo-icon" style="width:36px;height:36px"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+        <span style="font-family:var(--font-display);font-size:1.3rem;font-weight:900;color:var(--white)">CBS <span style="color:var(--gold)">2026</span></span>
+      </div>
+      <p>Conference on Biological Sciences 2026. University of Buea, Cameroon. Advancing life sciences research across Africa and beyond.</p>
+      <div class="social-links" style="margin-top:1rem">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.twitter.com" target="_blank" rel="noopener" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:kato.namuene@ubuea.cm" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Navigation</h4><ul>
+      <li><a href="../index.html"><i class="fa-solid fa-chevron-right"></i>Home</a></li>
+      <li><a href="about.html"><i class="fa-solid fa-chevron-right"></i>About</a></li>
+      <li><a href="themes.html"><i class="fa-solid fa-chevron-right"></i>Themes</a></li>
+      <li><a href="dates.html"><i class="fa-solid fa-chevron-right"></i>Key Dates</a></li>
+      <li><a href="speakers.html"><i class="fa-solid fa-chevron-right"></i>Speakers</a></li>
+      <li><a href="venue.html"><i class="fa-solid fa-chevron-right"></i>Venue</a></li>
+      <li><a href="tourism.html"><i class="fa-solid fa-chevron-right"></i>Tourism</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Participate</h4><ul>
+      <li><a href="registration.html"><i class="fa-solid fa-chevron-right"></i>Register Now</a></li>
+      <li><a href="abstracts.html"><i class="fa-solid fa-chevron-right"></i>Submit Abstract</a></li>
+      <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i>Sponsorship</a></li>
+      <li><a href="contact.html"><i class="fa-solid fa-chevron-right"></i>Contact Us</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="mailto:kato.namuene@ubuea.cm"><i class="fa-solid fa-envelope"></i>kato.namuene@ubuea.cm</a></li>
+      <li><a href="mailto:efokam@yahoo.com"><i class="fa-solid fa-envelope"></i>efokam@yahoo.com</a></li>
+      <li><a href="https://www.ubuea.cm" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i>www.ubuea.cm</a></li>
+      <li><a href="venue.html"><i class="fa-solid fa-location-dot"></i>Buea, SW Cameroon</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 CBS Conference — University of Buea. All rights reserved.</p>
+    <p>Photo credits: Limbe Wildlife Centre, University of Buea.</p>
+  </div>
+</div></footer>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-inner">
+    <button class="lb-close" id="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    <img id="lb-img" src="" alt=""/>
+    <div class="lb-caption">
+      <h3 id="lb-title"></h3>
+      <p id="lb-desc"></p>
+    </div>
+  </div>
+</div>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+<div id="toast" role="alert"><i class="fa-solid fa-check-circle"></i><span id="toast-msg"></span></div>
+
+<script src="../js/main.js"></script>
+<script>
+// ── LIGHTBOX ──────────────────────────────────────────────────────────────────
+const allTiles = [];
+document.querySelectorAll('[data-lb-src]').forEach((el, i) => {
+  allTiles.push({
+    src:   el.dataset.lbSrc,
+    title: el.dataset.lbTitle || '',
+    desc:  el.dataset.lbDesc  || '',
+  });
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => openLb(i));
+});
+
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbTitle = document.getElementById('lb-title');
+const lbDesc  = document.getElementById('lb-desc');
+let   lbIdx   = 0;
+
+function openLb(i) {
+  lbIdx = i;
+  showLb();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function showLb() {
+  const t = allTiles[lbIdx];
+  lbImg.src    = t.src;
+  lbTitle.textContent = t.title;
+  lbDesc.textContent  = t.desc;
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+document.getElementById('lb-prev').addEventListener('click', () => { lbIdx = (lbIdx - 1 + allTiles.length) % allTiles.length; showLb(); });
+document.getElementById('lb-next').addEventListener('click', () => { lbIdx = (lbIdx + 1) % allTiles.length; showLb(); });
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLb();
+  if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + allTiles.length) % allTiles.length; showLb(); }
+  if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % allTiles.length; showLb(); }
+});
+</script>
+</body>
+</html>
