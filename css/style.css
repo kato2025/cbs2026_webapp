@@ -78,7 +78,7 @@ ul { list-style: none; }
 #announcement-bar .close-bar:hover { opacity:1; }
 
 /* NAVBAR */
-#navbar { position:sticky; top:0; z-index:1000; height:var(--nav-h); background:rgba(250,247,240,.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--gray-light); transition:box-shadow var(--transition); }
+#navbar { position:sticky; top:0; z-index:1500; height:var(--nav-h); background:rgba(250,247,240,.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--gray-light); transition:box-shadow var(--transition); }
 #navbar.scrolled { box-shadow:var(--shadow-md); }
 .nav-inner { display:flex; align-items:center; justify-content:space-between; height:100%; }
 .nav-logo { display:flex; align-items:center; gap:.8rem; text-decoration:none; }
@@ -97,11 +97,26 @@ ul { list-style: none; }
 .hamburger.open span:nth-child(2) { opacity:0; }
 .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-#mobile-nav { display:none; position:fixed; inset:0; z-index:999; }
-#mobile-nav.open { display:block; }
+#mobile-nav {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 2000;
+}
+#mobile-nav.open { display: block; }
 .mob-overlay { position:absolute; inset:0; background:rgba(10,26,16,.5); }
-.mob-drawer { position:absolute; top:0; right:0; width:min(320px,90vw); height:100%; background:var(--white); padding:calc(var(--nav-h) + 1rem) 1.5rem 2rem; display:flex; flex-direction:column; gap:.4rem; animation:drawerIn .3s ease; overflow-y:auto; }
-@keyframes drawerIn { from{transform:translateX(100%)} to{transform:translateX(0)} }
+.mob-drawer {
+  position: absolute; top: 0; right: 0;
+  width: min(320px, 90vw); height: 100%;
+  background: var(--white);
+  padding: calc(var(--nav-h) + 1rem) 1.5rem 2rem;
+  display: flex; flex-direction: column; gap: .4rem;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+#mobile-nav.open .mob-drawer {
+  transform: translateX(0);
+}
 .mob-drawer a { display:flex; align-items:center; gap:.8rem; padding:.85rem 1rem; font-size:.95rem; font-weight:500; color:var(--dark); border-radius:10px; border-left:3px solid transparent; transition:var(--transition); }
 .mob-drawer a:hover, .mob-drawer a.active { background:var(--cream); border-left-color:var(--green-mid); padding-left:1.4rem; color:var(--green-deep); }
 .mob-drawer a i { color:var(--green-mid); width:18px; text-align:center; }
