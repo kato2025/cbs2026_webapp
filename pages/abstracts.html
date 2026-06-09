@@ -38,7 +38,6 @@
 <section class="section-pad" style="background:var(--cream)">
 <div class="container">
 <div class="grid-2" style="gap:4rem;align-items:start">
-  <!-- LEFT: Guide -->
   <div class="reveal" style="display:flex;flex-direction:column;gap:1.5rem">
     <div><div class="section-label">How to Submit</div><h2 class="section-title">Submission Guide</h2></div>
     <div style="display:flex;flex-direction:column;gap:1rem">
@@ -60,21 +59,12 @@
       </ul>
     </div>
   </div>
-  <!-- RIGHT: Form -->
   <div class="reveal delay-2">
     <div class="form-card">
       <div id="abs-form-body">
         <h2>Submit Abstract</h2>
         <p class="form-desc">All fields marked <span style="color:#e05252">*</span> are required. Scientific committee review takes up to 4 weeks.</p>
-        <form id="abstract-form" action="https://formsubmit.co/kato.namuene@ubuea.cm" method="POST" novalidate>
-          <!-- FORMSUBMIT.CO — works instantly, no account needed -->
-          <!-- First submission will send a one-time activation email to kato.namuene@ubuea.cm — just click the confirmation link -->
-          <input type="hidden" name="_subject" value="CBS 2026 — Abstract Submission"/>
-          <input type="hidden" name="_cc" value="efokam@yahoo.com"/>
-          <input type="hidden" name="_captcha" value="false"/>
-          <input type="hidden" name="_template" value="table"/>
-          <input type="hidden" name="_next" value="abstract-success.html"/>
-          <input type="checkbox" name="botcheck" style="display:none"/>
+        <form id="abstract-form" novalidate>
           
           
           <div class="form-section-label">Presenting Author</div>
@@ -126,45 +116,62 @@ var absTA = document.getElementById('a-text');
 var wcLbl = document.getElementById('wc-label');
 
 absTA.addEventListener('input', function() {
-  var words = absTA.value.trim() === '' ? 0 : absTA.value.trim().split(/\s+/).length;
-  wcLbl.textContent = ' — ' + words + ' / 300 words';
-  wcLbl.style.color = words > 300 ? '#e05252' : 'var(--gray-text)';
+  var w = absTA.value.trim() === '' ? 0 : absTA.value.trim().split(/\s+/).length;
+  wcLbl.textContent = ' — ' + w + ' / 300 words';
+  wcLbl.style.color = w > 300 ? '#e05252' : 'var(--gray-text)';
 });
 
-document.getElementById('abstract-form').addEventListener('submit', function(e) {
+document.getElementById('abstract-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
   var words = absTA.value.trim() === '' ? 0 : absTA.value.trim().split(/\s+/).length;
   if (words > 300) {
-    e.preventDefault();
     absTA.classList.add('error');
     if (absTA.closest('.form-group')) absTA.closest('.form-group').classList.add('has-error');
     document.getElementById('a-text-err').textContent = 'Abstract exceeds 300 words (' + words + '). Please shorten it.';
     showToast('Abstract too long: ' + words + '/300 words.', 'error');
     return;
   }
-  var required = this.querySelectorAll('[required]');
-  var allFilled = true;
-  required.forEach(function(field) {
-    if (!field.value.trim()) {
-      field.classList.add('error');
-      if (field.closest('.form-group')) field.closest('.form-group').classList.add('has-error');
-      allFilled = false;
-    }
+
+  var valid = true;
+  this.querySelectorAll('[required]').forEach(function(f) {
+    var empty = f.value.trim() === '';
+    f.classList.toggle('error', empty);
+    if (f.closest('.form-group')) f.closest('.form-group').classList.toggle('has-error', empty);
+    if (empty) valid = false;
   });
-  if (!allFilled) {
-    e.preventDefault();
-    showToast('Please fill in all required fields.', 'error');
-    return;
-  }
-  if (!document.getElementById('a-orig').checked) {
-    e.preventDefault();
-    showToast('Please confirm the originality of your work.', 'error');
-    return;
-  }
-  // All valid — allow the native form POST to Formsubmit.co to proceed
+  if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
+  if (!document.getElementById('a-orig').checked) { showToast('Please confirm the originality of your work.', 'error'); return; }
+
   var btn = document.getElementById('a-submit');
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
   btn.disabled = true;
-  // Form will POST naturally — Formsubmit.co handles delivery to both emails
+
+  var refId = 'CBS2026-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  var formData = new FormData(this);
+  formData.append('Reference ID', refId);
+
+  try {
+    var response = await fetch('https://formspree.io/f/mvznrqyy', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    var data = await response.json();
+    if (response.ok) {
+      document.getElementById('abs-ref-msg').textContent =
+        'Your abstract (Ref: ' + refId + ') has been received by the scientific committee. You will be notified of the decision by 31 October 2026.';
+      document.getElementById('abs-form-body').style.display = 'none';
+      document.getElementById('abs-success').classList.add('show');
+      showToast('Abstract submitted! Ref: ' + refId);
+    } else {
+      throw new Error(data.error || 'Submission failed');
+    }
+  } catch(err) {
+    showToast(err.message || 'Submission failed. Please try again.', 'error');
+    btn.innerHTML = '<i class="fa-solid fa-upload"></i> Submit Abstract';
+    btn.disabled = false;
+  }
 });
 </script>
 <footer><div class="container">

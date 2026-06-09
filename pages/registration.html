@@ -38,7 +38,6 @@
 <section class="section-pad" style="background:var(--white)">
 <div class="container">
 <div class="grid-2" style="gap:4rem;align-items:start">
-  <!-- LEFT: Fee info -->
   <div class="reveal" style="display:flex;flex-direction:column;gap:1.5rem">
     <div class="fee-card">
       <div class="fee-header"><h3>Registration Fees</h3><p>Fees in CFA Franc (XAF) — to be confirmed</p></div>
@@ -54,21 +53,12 @@
     <div class="info-note gold"><i class="fa-solid fa-circle-info"></i><span>Registration fees include conference materials, lunches, coffee breaks, and access to all sessions. Group/institutional rates available on request.</span></div>
     <div class="info-note green"><i class="fa-solid fa-envelope"></i><span>Payment enquiries: <a href="mailto:kato.namuene@ubuea.cm" style="color:var(--green-mid);font-weight:600">kato.namuene@ubuea.cm</a> or <a href="mailto:efokam@yahoo.com" style="color:var(--green-mid);font-weight:600">efokam@yahoo.com</a></span></div>
   </div>
-  <!-- RIGHT: Form -->
   <div class="reveal delay-2">
     <div class="form-card">
       <div id="reg-form-body">
         <h2>Registration Form</h2>
         <p class="form-desc">Fields marked <span style="color:#e05252">*</span> are required.</p>
-        <form id="registration-form" action="https://formsubmit.co/kato.namuene@ubuea.cm" method="POST" novalidate>
-          <!-- FORMSUBMIT.CO — works instantly, no account needed -->
-          <!-- First submission will send a one-time activation email to kato.namuene@ubuea.cm — just click the confirmation link -->
-          <input type="hidden" name="_subject" value="CBS 2026 — New Registration"/>
-          <input type="hidden" name="_cc" value="efokam@yahoo.com"/>
-          <input type="hidden" name="_captcha" value="false"/>
-          <input type="hidden" name="_template" value="table"/>
-          <input type="hidden" name="_next" value="registration-success.html"/>
-          <input type="checkbox" name="botcheck" style="display:none"/>
+        <form id="registration-form" novalidate>
 
           
           
@@ -114,32 +104,43 @@
 </div>
 </div></section>
 <script>
-document.getElementById('registration-form').addEventListener('submit', function(e) {
-  // Let the browser validate required fields first
-  var required = this.querySelectorAll('[required]');
-  var allFilled = true;
-  required.forEach(function(field) {
-    if (!field.value.trim()) {
-      field.classList.add('error');
-      if (field.closest('.form-group')) field.closest('.form-group').classList.add('has-error');
-      allFilled = false;
-    }
+document.getElementById('registration-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Validate required fields
+  var valid = true;
+  this.querySelectorAll('[required]').forEach(function(f) {
+    var empty = f.value.trim() === '';
+    f.classList.toggle('error', empty);
+    if (f.closest('.form-group')) f.closest('.form-group').classList.toggle('has-error', empty);
+    if (empty) valid = false;
   });
-  if (!allFilled) {
-    e.preventDefault();
-    showToast('Please fill in all required fields.', 'error');
-    return;
-  }
-  if (!document.getElementById('r-consent').checked) {
-    e.preventDefault();
-    showToast('Please accept the terms & conditions.', 'error');
-    return;
-  }
-  // If all valid — allow the native form POST to Formsubmit.co to proceed
+  if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
+  if (!document.getElementById('r-consent').checked) { showToast('Please accept the terms & conditions.', 'error'); return; }
+
   var btn = document.getElementById('r-submit');
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
   btn.disabled = true;
-  // Form will POST naturally — Formsubmit.co handles delivery to both emails
+
+  try {
+    var response = await fetch('https://formspree.io/f/mvznrqyy', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    var data = await response.json();
+    if (response.ok) {
+      document.getElementById('reg-form-body').style.display = 'none';
+      document.getElementById('reg-success').classList.add('show');
+      showToast('Registration submitted successfully!');
+    } else {
+      throw new Error(data.error || 'Submission failed');
+    }
+  } catch(err) {
+    showToast(err.message || 'Submission failed. Please try again.', 'error');
+    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Registration';
+    btn.disabled = false;
+  }
 });
 </script>
 <footer><div class="container">
