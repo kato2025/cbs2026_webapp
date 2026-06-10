@@ -23,7 +23,7 @@
       overflow: hidden;
       display: flex; align-items: flex-end;
     }
-    .hero-mosaic {
+    .hero-mosaic { position:relative; z-index:2;
       position: absolute; inset: 0;
       display: grid;
       grid-template-columns: 1.6fr 1fr 1fr;
@@ -495,6 +495,13 @@
      HERO — Full-bleed photo mosaic
 ═══════════════════════════════════════════════════════ -->
 <section class="tourism-hero">
+  <div class="carousel-bg">
+    <div class="slide"><img src="../images/campus01.jpg" alt="UB campus"/></div>
+    <div class="slide"><img src="../images/campus06.png" alt="UB aerial"/></div>
+    <div class="slide"><img src="../images/campus12.png" alt="UB panorama"/></div>
+    <div class="slide"><img src="../images/campus02.png" alt="UB main gate"/></div>
+    <div class="slide"><img src="../images/campus07.png" alt="UB admin building"/></div>
+  </div>
   <div class="hero-mosaic">
     <div class="tile tile-main" data-lb-src="../images/chimp1.jpg" data-lb-title="Chimpanzee at Limbe Wildlife Centre" data-lb-desc="Pan troglodytes — our closest living relative, rescued and rehabilitated at LWC">
       <img src="../images/chimp1.jpg" alt="Chimpanzee at Limbe Wildlife Centre"/>

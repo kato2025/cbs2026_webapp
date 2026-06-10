@@ -1,10 +1,57 @@
 /* ── HOME PAGE SPECIFIC STYLES ─────────────────────────────── */
 
 /* HERO */
-#hero { position:relative; overflow:hidden; min-height:100vh; display:flex; flex-direction:column; justify-content:center; background:linear-gradient(135deg,var(--green-deep) 0%,#0a2e1a 50%,#051508 100%); }
-.hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(45,181,110,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(200,168,75,.12) 0%,transparent 70%); pointer-events:none; }
-.hero-bg::after { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px); background-size:60px 60px; }
-.hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; padding:8rem 0 5rem; }
+#hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--green-deep);
+}
+
+/* ── HERO CAROUSEL ───────────────────────────────────────── */
+.hero-carousel {
+  position: absolute; inset: 0; z-index: 0;
+  overflow: hidden;
+}
+.hero-carousel-track {
+  display: flex;
+  width: 100%; height: 100%;
+  transition: none;
+}
+.hero-slide {
+  min-width: 100%; height: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+.hero-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+/* Carousel dots */
+.carousel-dots {
+  position: absolute; bottom: 4.5rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex; gap: .5rem; align-items: center;
+}
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  border: none; cursor: pointer; padding: 0;
+  transition: all .3s ease;
+}
+.carousel-dot.active {
+  background: var(--gold);
+  width: 24px; border-radius: 4px;
+}
+
+/* hero-bg no longer used — overlay now via .carousel-bg::after in style.css */
+.hero-inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; padding:8rem 0 5rem; }
 .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:rgba(200,168,75,.18); border:1px solid rgba(200,168,75,.4); color:var(--gold-light); padding:.4rem 1rem; border-radius:50px; font-size:.78rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:1.4rem; }
 .hero-title { font-family:var(--font-display); font-size:clamp(2.4rem,5vw,4rem); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:1rem; }
 .hero-title span { background:linear-gradient(135deg,var(--gold),var(--gold-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
@@ -26,7 +73,7 @@
 .stats-strip { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:1.2rem 1.5rem; display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; width:100%; max-width:380px; text-align:center; }
 .stat-item .stat-n { font-family:var(--font-display); font-size:1.6rem; font-weight:900; color:var(--gold); display:block; }
 .stat-item .stat-l { font-size:.7rem; color:rgba(255,255,255,.5); text-transform:uppercase; letter-spacing:.08em; }
-.scroll-cue { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.4rem; color:rgba(255,255,255,.4); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; animation:bounce 2s ease infinite; }
+.scroll-cue { position:absolute; z-index:2; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.4rem; color:rgba(255,255,255,.4); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; animation:bounce 2s ease infinite; }
 @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
 /* QUICK LINKS STRIP */
@@ -43,9 +90,8 @@
 
 /* ABOUT SNAPSHOT */
 .about-visual { position:relative; }
-.about-img-frame { width:100%; aspect-ratio:4/3; background:linear-gradient(135deg,var(--green-deep),var(--green-mid)); border-radius:var(--radius-lg); overflow:hidden; position:relative; }
-.about-img-frame::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(45,181,110,.4) 0%,transparent 60%),radial-gradient(circle at 70% 20%,rgba(200,168,75,.3) 0%,transparent 50%); }
-.img-icon { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:6rem; color:rgba(255,255,255,.12); }
+.about-img-frame { width:100%; aspect-ratio:4/3; background:var(--gray-light); border-radius:var(--radius-lg); overflow:hidden; position:relative; }
+/* image now real — no overlay needed */
 .about-float-badge { position:absolute; bottom:-1.5rem; right:-1.5rem; background:var(--gold); color:var(--dark); padding:1rem 1.4rem; border-radius:var(--radius); box-shadow:var(--shadow-md); font-weight:700; text-align:center; }
 .about-float-badge .badge-n { font-family:var(--font-display); font-size:2rem; font-weight:900; line-height:1; display:block; }
 .about-float-badge .badge-l { font-size:.72rem; text-transform:uppercase; letter-spacing:.07em; }

@@ -180,3 +180,45 @@ window.startCountdown = function(targetDate, ids) {
   tick();
   setInterval(tick, 1000);
 };
+
+/* ═══════════════════════════════════════════════════════
+   CAROUSEL — auto-rotates background images
+   Call: initCarousel(containerEl, intervalMs)
+   Looks for .slide children inside containerEl
+═══════════════════════════════════════════════════════ */
+window.initCarousel = function(container, interval) {
+  if (!container) return;
+  var slides = Array.from(container.querySelectorAll('.slide'));
+  var dots   = Array.from(container.parentElement
+                 ? container.parentElement.querySelectorAll('.carousel-dots .dot') : []);
+  if (slides.length === 0) return;
+
+  var current = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    if (dots[current]) dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    if (dots[current]) dots[current].classList.add('active');
+  }
+
+  // Set first slide active
+  slides[0].classList.add('active');
+  if (dots[0]) dots[0].classList.add('active');
+
+  // Wire dot clicks
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { goTo(i); });
+  });
+
+  // Auto-advance
+  setInterval(function() { goTo(current + 1); }, interval || 4000);
+};
+
+// Auto-init every .carousel-bg on the page
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.carousel-bg').forEach(function(cb) {
+    initCarousel(cb, 4500);
+  });
+});

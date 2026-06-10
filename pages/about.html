@@ -18,19 +18,8 @@
     }
     .mission-img {
       width: 100%; aspect-ratio: 4/3;
-      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      background: var(--gray-light);
       border-radius: var(--radius-lg); overflow: hidden; position: relative;
-    }
-    .mission-img::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(circle at 40% 60%, rgba(45,181,110,.4) 0%, transparent 60%),
-        radial-gradient(circle at 70% 20%, rgba(200,168,75,.3) 0%, transparent 50%);
-    }
-    .mission-img i {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 7rem; color: rgba(255,255,255,.1);
     }
 
     .values-grid {
@@ -193,6 +182,21 @@
 
 <!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="carousel-bg">
+    <div class="slide"><img src="../images/campus01.jpg" alt="UB buildings with Mount Cameroon"/></div>
+    <div class="slide"><img src="../images/campus02.png" alt="University of Buea main gate"/></div>
+    <div class="slide"><img src="../images/campus03.png" alt="University of Buea second gate"/></div>
+    <div class="slide"><img src="../images/campus04.png" alt="Campus roundpoint aerial"/></div>
+    <div class="slide"><img src="../images/campus05.png" alt="Elephant statue roundabout"/></div>
+    <div class="slide"><img src="../images/campus06.png" alt="Campus aerial view"/></div>
+    <div class="slide"><img src="../images/campus07.png" alt="Central Administration building"/></div>
+    <div class="slide"><img src="../images/campus08.png" alt="Faculty building aerial"/></div>
+    <div class="slide"><img src="../images/campus09.png" alt="Library building"/></div>
+    <div class="slide"><img src="../images/campus10.png" alt="Faculty of Science"/></div>
+    <div class="slide"><img src="../images/campus11.png" alt="ASTI building"/></div>
+    <div class="slide"><img src="../images/campus12.png" alt="Campus panorama"/></div>
+    <div class="slide"><img src="../images/campus13.png" alt="Campus wide view"/></div>
+  </div>
   <div class="container">
     <div class="page-hero-inner">
       <div class="breadcrumb">
@@ -212,7 +216,7 @@
   <div class="container">
     <div class="mission-grid">
       <div class="mission-img reveal">
-        <i class="fa-solid fa-dna"></i>
+        <img src="../images/campus09.png" alt="University of Buea campus" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg);"/>
       </div>
       <div class="reveal delay-2">
         <div class="section-label">Our Mission</div>
@@ -297,7 +301,7 @@
         <span class="tag">Conference Chair</span>
         <div style="margin-top:.8rem">
           <a href="mailto:kato.namuene@ubuea.cm" style="font-size:.82rem;color:var(--green-mid);display:flex;align-items:center;justify-content:center;gap:.4rem">
-            <i class="fa-solid fa-envelope"></i>kato.namuene@ubuea.cm
+            <i class="fa-solid fa-envelope"></i>fokam.eric@ubuea.cm
           </a>
         </div>
       </div>
@@ -307,8 +311,8 @@
         <div class="role">Faculty of Agricluture and Veterinary Medicine<br/>University of Buea</div>
         <span class="tag">Secretary General</span>
         <div style="margin-top:.8rem">
-          <a href="mailto:fokam.eric@ubuea.cm" style="font-size:.82rem;color:var(--green-mid);display:flex;align-items:center;justify-content:center;gap:.4rem">
-            <i class="fa-solid fa-envelope"></i>fokam.eric@ubuea.cm
+          <a href="mailto:nlmonah7@gmail.com" style="font-size:.82rem;color:var(--green-mid);display:flex;align-items:center;justify-content:center;gap:.4rem">
+            <i class="fa-solid fa-envelope"></i>nlmonah7@gmail.com
           </a>
         </div>
       </div>
@@ -317,6 +321,21 @@
         <h4>Dr. Kato Samuel Namuene</h4>
         <div class="role">Faculty of Agricluture and Veterinary Medicine</div>
         <span class="tag">Communication/Publicity</span>
+        <div style="margin-top:.8rem">
+          <a href="mailto:kato.namuene@ubuea.cm" style="font-size:.82rem;color:var(--green-mid);display:flex;align-items:center;justify-content:center;gap:.4rem">
+            <i class="fa-solid fa-envelope"></i>kato.namuene@ubuea.cm
+          </a>
+        </div>
+      </div>
+      <div class="committee-card reveal delay-3">
+        <div class="committee-avatar">TBA</div>
+        <h4>To Be Announced</h4>
+        <div class="role">Local Organising Committee</div>
+        <span class="tag">Logistics &amp; Operations</span>
+      </div>
+    </div>
+          </a>
+        </div>
       </div>
       <div class="committee-card reveal delay-3">
         <div class="committee-avatar">TBA</div>
